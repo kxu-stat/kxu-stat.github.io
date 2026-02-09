@@ -2,12 +2,11 @@
 layout: about
 title: About
 permalink: /
-subtitle: #<a href='https://acms.nd.edu/'>Department of Applied and Computational Mathematics and Statistics, University of Notre Dame</a>
 
 profile:
   align: right
   image: ke2025.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # crops the image to make it circular
   more_info: >
     <p>Email: kxu6@nd.edu</p>
     <p>Office: 207 Crowley Hall</p>
@@ -18,7 +17,7 @@ social: false # includes social icons at the bottom of the page
 
 announcements:
   enabled: false # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+  scrollable: false # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
@@ -35,7 +34,7 @@ Prior to my doctoral studies, I earned a Master’s degree from the [University 
 
 Originally from Jixi, a quaint town in Huizhou region near [Mount Huangshan](https://whc.unesco.org/en/list/547/), I later moved to Shanghai, where I spent most of my formative years, all thanks to the unwavering support of my family.
 
-#### Research Interest:
+#### Research Interests:
 
 My research spans a broad range of topics in mathematical statistics, with a focus on developing theoretical frameworks for **statistical inference on complex data**, including multilinear **tensors**, infinite-dimensional **functions**, and large-scale **genomics**. 
 
