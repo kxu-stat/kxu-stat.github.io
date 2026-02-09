@@ -1,115 +1,79 @@
 ---
 ---
-
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title     = {Relativity: the Special and General Theory},
-  author    = {Einstein, Albert},
-  year      = {1920},
-  publisher = {Methuen & Co Ltd},
-  html      = {relativity.html}
+@article{chen2025modewise,
+  title={Modewise Additive Factor Model for Matrix Time Series},
+  author={Chen, Elynn and Han, Yuefeng and Li, Jiayu and Xu, Ke },
+  journal={arXiv preprint arXiv:2512.25025},
+  year={2025},
+    abstract={We introduce a Modewise Additive Factor Model (MAFM) for matrix-valued time series that captures row-specific and column-specific latent effects through an additive structure, offering greater flexibility than multiplicative frameworks such as Tucker and CP factor models. In MAFM, each observation decomposes into a row-factor component, a column-factor component, and noise, allowing distinct sources of variation along different modes to be modeled separately. We develop a computationally efficient two-stage estimation procedure: Modewise Inner-product Eigendecomposition (MINE) for initialization, followed by Complement-Projected Alternating Subspace Estimation (COMPAS) for iterative refinement. The key methodological innovation is that orthogonal complement projections completely eliminate cross-modal interference when estimating each loading space. We establish convergence rates for the estimated factor loading matrices under proper conditions. We further derive asymptotic distributions for the loading matrix estimators and develop consistent covariance estimators, yielding a data-driven inference framework that enables confidence interval construction and hypothesis testing. As a technical contribution of independent interest, we establish matrix Bernstein inequalities for quadratic forms of dependent matrix time series. Numerical experiments on synthetic and real data demonstrate the advantages of the proposed method over existing approaches.},
+  doi={10.48550/arXiv.2512.25025},
+  abbr={Preprint},
+  selected={true}
 }
 
-@book{einstein1956investigations,
-  bibtex_show = {true},
-  title       = {Investigations on the Theory of the Brownian Movement},
-  author      = {Einstein, Albert},
-  year        = {1956},
-  publisher   = {Courier Corporation},
-  preview     = {brownian-motion.gif}
+@article{xu2025guaranteed,
+  title={Guaranteed Noisy CP Tensor Recovery via Riemannian Optimization on the Segre Manifold},
+  author={Xu, Ke and Han, Yuefeng},
+  journal={arXiv preprint arXiv:2510.00569},
+  year={2025},
+    abstract={Recovering a low-CP-rank tensor from noisy linear measurements is a central challenge in high-dimensional data analysis, with applications spanning tensor PCA, tensor regression, and beyond. We exploit the intrinsic geometry of rank-one tensors by casting the recovery task as an optimization problem over the Segre manifold, the smooth Riemannian manifold of rank-one tensors. This geometric viewpoint yields two powerful algorithms: Riemannian Gradient Descent (RGD) and Riemannian Gauss-Newton (RGN), each of which preserves feasibility at every iteration. Under mild noise assumptions, we prove that RGD converges at a local linear rate, while RGN exhibits an initial local quadratic convergence phase that transitions to a linear rate as the iterates approach the statistical noise floor. Extensive synthetic experiments validate these convergence guarantees and demonstrate the practical effectiveness of our methods.},
+  doi={10.48550/arXiv.2510.00569},
+  abbr={Preprint},
+  selected={false}}
+
+@article{xu2025integrative,
+  title={Integrative Mendelian randomization for detecting exposure-by-group interactions using group-specific and combined summary statistics},
+  author={Xu, Ke and Maydanchik, Nathaniel and Kang, Bowei and Chen, Jianhai and Chen, Qixiang and Xu, Gongyao and Tasaki, Shinya and Bennett, David A and Chen, Lin S},
+  journal={PLoS genetics},
+  volume={21},
+  number={9},
+  pages={e1011819},
+  year={2025},
+  publisher={Public Library of Science San Francisco, CA USA},
+  abstract={Interactions between risk factors and covariate-defined groups are commonly observed in complex diseases. Existing methods for detecting interactions typically require individual-level data. The data availability and the measurements of risk exposures and covariates often limit the power and applicability in assessing interactions. To address these limitations, we propose int2MR, an integrative Mendelian randomization (MR) method that leverages GWAS summary statistics on exposure traits and group-separated and/or combined GWAS statistics on outcome traits. int2MR can assess a broad range of risk exposure effects on diseases and traits, revealing interactions unattainable with incomplete or limited individual-level data. Simulation studies demonstrated that int2MR effectively controls type I error rates under various settings while achieving considerable power gains with the integration of additional group-combined GWAS data. We applied int2MR to two data analyses. First, we identified risk exposures with sex-interaction effects on ADHD, and our results suggested potentially elevated inflammation in males. Second, we detected age-group-specific risk factors for Alzheimer’s disease pathologies in the oldest-old (age 95+), many of which were related to immune and inflammatory processes. Our findings suggest that reduced chronic inflammation may underlie the distinct pathological mechanisms observed in this age group. int2MR is a robust and flexible tool for assessing group-specific or interaction effects, providing insights into disease mechanisms.},
+  doi={10.1371/journal.pgen.1011819},
+  abbr={PLoS Genetics},
+  selected={true}
 }
 
-@article{einstein1950meaning,
-  abbr        = {AJP},
-  bibtex_show = {true},
-  title       = {The meaning of relativity},
-  author      = {Einstein, Albert and Taub, AH},
-  journal     = {American Journal of Physics},
-  volume      = {18},
-  number      = {6},
-  pages       = {403--404},
-  year        = {1950},
-  publisher   = {American Association of Physics Teachers}
+@article{xu2025statistical,
+  title={Statistical Inference for Low-Rank Tensor Models},
+  author={Xu, Ke and Chen, Elynn and Han, Yuefeng},
+  journal={arXiv preprint arXiv:2501.16223},
+  year={2025},
+  abstract={Statistical inference for tensors has emerged as a critical challenge in analyzing high-dimensional data in modern data science. This paper introduces a unified framework for inferring general and low-Tucker-rank linear functionals of low-Tucker-rank signal tensors for several low-rank tensor models. Our methodology tackles two primary goals: achieving asymptotic normality and constructing minimax-optimal confidence intervals. By leveraging a debiasing strategy and projecting onto the tangent space of the low-Tucker-rank manifold, we enable inference for general and structured linear functionals, extending far beyond the scope of traditional entrywise inference. Specifically, in the low-Tucker-rank tensor regression or PCA model, we establish the computational and statistical efficiency of our approach, achieving near-optimal sample size requirements (in regression model) and signal-to-noise ratio (SNR) conditions (in PCA model) for general linear functionals without requiring sparsity in the loading tensor. Our framework also attains both computationally and statistically optimal sample size and SNR thresholds for low-Tucker-rank linear functionals. Numerical experiments validate our theoretical results, showcasing the framework's utility in diverse applications. This work addresses significant methodological gaps in statistical inference, advancing tensor analysis for complex and high-dimensional data environments.},
+  doi={10.48550/arXiv.2501.16223},
+  abbr={Preprint},
+  selected={true}
 }
 
-@article{PhysRev.47.777,
-  abbr              = {PhysRev},
-  title             = {Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author            = {Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract          = {In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal           = {Phys. Rev.},
-  location          = {New Jersey},
-  volume            = {47},
-  issue             = {10},
-  pages             = {777--780},
-  numpages          = {0},
-  year              = {1935},
-  month             = {May},
-  publisher         = aps,
-  doi               = {10.1103/PhysRev.47.777},
-  url               = {https://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html              = {https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf               = {example_pdf.pdf},
-  altmetric         = {248277},
-  dimensions        = {true},
-  google_scholar_id = {qyhmnyLat1gC},
-  video             = {https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info   = {. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation        = {* Example use of superscripts<br>† Albert Einstein},
-  selected          = {true},
-  inspirehep_id     = {3255}
+
+@article{lu2024integrative,
+  title={An integrative multi-context Mendelian randomization method for identifying risk genes across human tissues},
+  author={Lu, Yihao and Xu, Ke and Maydanchik, Nathaniel and Kang, Bowei and Pierce, Brandon L and Yang, Fan and Chen, Lin S},
+  journal={The American Journal of Human Genetics},
+  volume={111},
+  number={8},
+  pages={1736--1749},
+  year={2024},
+  publisher={Elsevier},
+  abstract={Mendelian randomization (MR) provides valuable assessments of the causal effect of exposure on outcome, yet the application of conventional MR methods for mapping risk genes encounters new challenges. One of the issues is the limited availability of expression quantitative trait loci (eQTLs) as instrumental variables (IVs), hampering the estimation of sparse causal effects. Additionally, the often context/tissue-specific eQTL effects challenge the MR assumption of consistent IV effects across eQTL and GWAS data. To address these challenges, we propose a multi-context multivariable integrative MR framework, mintMR, for mapping expression and molecular traits as joint exposures. It models the effects of molecular exposures across multiple tissues in each gene region, while simultaneously estimating across multiple gene regions. It uses eQTLs with consistent effects across more than one tissue type as IVs, improving IV consistency. A major innovation of mintMR involves employing multi-view learning methods to collectively model latent indicators of disease relevance across multiple tissues, molecular traits, and gene regions. The multi-view learning captures the major patterns of disease-relevance and uses these patterns to update the estimated tissue relevance probabilities. The proposed mintMR iterates between performing a multi-tissue MR for each gene region and joint learning the disease-relevant tissue probabilities across gene regions, improving the estimation of sparse effects across genes. We apply mintMR to evaluate the causal effects of gene expression and DNA methylation for 35 complex traits using multi-tissue QTLs as IVs. The proposed mintMR controls genome-wide inflation and offers new insights into disease mechanisms.},
+  doi={10.1101/2024.03.04.24303731},
+  abbr={AJHG},
+  selected={true}
 }
 
-@article{einstein1905molekularkinetischen,
-  title     = {{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author    = {Einstein, A.},
-  journal   = {Annalen der physik},
-  volume    = {322},
-  number    = {8},
-  pages     = {549--560},
-  year      = {1905},
-  publisher = {Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr    = {Ann. Phys.},
-  title   = {Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author  = {Einstein, A.},
-  journal = {Ann. Phys.},
-  volume  = {17},
-  pages   = {549--560},
-  year    = {1905}
-}
-
-@article{einstein1905electrodynamics,
-  title  = {On the electrodynamics of moving bodies},
-  author = {Einstein, A.},
-  year   = {1905}
-}
-
-@article{einstein1905photoelectriceffect,
-  bibtex_show = {true},
-  abbr        = {Ann. Phys.},
-  title       = {{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}},
-  author      = {Albert Einstein},
-  abstract    = {This is the abstract text.},
-  journal     = {Ann. Phys.},
-  volume      = {322},
-  number      = {6},
-  pages       = {132--148},
-  year        = {1905},
-  doi         = {10.1002/andp.19053220607},
-  award       = {Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name  = {Nobel Prize}
-}
-
-@book{przibram1967letters,
-  bibtex_show = {true},
-  title       = {Letters on wave mechanics},
-  author      = {Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year        = {1967},
-  publisher   = {Vision},
-  preview     = {wave-mechanics.gif},
-  abbr        = {Vision}
+@article{xu2024infant,
+  title={Infant age inversely correlates with gut carriage of resistance genes, reflecting modifications in microbial carbohydrate metabolism during early life},
+  author={Xu, Xinming and Feng, Qingying and Zhang, Tao and Gao, Yunlong and Cheng, Qu and Zhang, Wanqiu and Wu, Qinglong and Xu, Ke and Li, Yucan and Nguyen, Nhu and others},
+  journal={Imeta},
+  volume={3},
+  number={2},
+  pages={e169},
+  year={2024},
+  publisher={Wiley Online Library},
+  abstract={The infant gut microbiome is increasingly recognized as a reservoir of antibiotic resistance genes, yet the assembly of gut resistome in infants and its influencing factors remain largely unknown. We characterized resistome in 4132 metagenomes from 963 infants in six countries and 4285 resistance genes were observed. The inherent resistome pattern of healthy infants (N = 272) could be distinguished by two stages: a multicompound resistance phase (Months 0–7) and a tetracycline-mupirocin-β-lactam-dominant phase (Months 8–14). Microbial taxonomy explained 40.7% of the gut resistome of healthy infants, with Escherichia (25.5%) harboring the most resistance genes. In a further analysis with all available infants (N = 963), we found age was the strongest influencer on the resistome and was negatively correlated with the overall resistance during the first 3 years (p < 0.001). Using a random-forest approach, a set of 34 resistance genes could be used to predict age (R2 = 68.0%). Leveraging microbial host inference analyses, we inferred the age-dependent assembly of infant resistome was a result of shifts in the gut microbiome, primarily driven by changes in taxa that disproportionately harbor resistance genes across taxa (e.g., Escherichia coli more frequently harbored resistance genes than other taxa). We performed metagenomic functional profiling and metagenomic assembled genome analyses whose results indicate that the development of gut resistome was driven by changes in microbial carbohydrate metabolism, with an increasing need for carbohydrate-active enzymes from Bacteroidota and a decreasing need for Pseudomonadota during infancy. Importantly, we observed increased acquired resistance genes over time, which was related to increased horizontal gene transfer in the developing infant gut microbiome. In summary, infant age was negatively correlated with antimicrobial resistance gene levels, reflecting a composition shift in the gut microbiome, likely driven by the changing need for microbial carbohydrate metabolism during early life.},
+  doi={10.1002/imt2.169},
+  abbr={iMeta},
+  selected={false}
 }
