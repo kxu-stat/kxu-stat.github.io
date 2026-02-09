@@ -6,7 +6,7 @@ permalink: /
 profile:
   align: right
   image: ke2025.jpg
-  image_circular: true # crops the image to make it circular
+  image_circular: false # crops the image to make it circular
   more_info: >
     <p>Email: kxu6@nd.edu</p>
     <p>Office: 207 Crowley Hall</p>
