@@ -4,6 +4,7 @@ permalink: /teaching/
 title: Teaching & Service
 description: 
 nav: true
+nav_order: 6
 calendar: true
 ---
 
