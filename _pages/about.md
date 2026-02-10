@@ -34,7 +34,7 @@ Prior to my doctoral studies, I earned a Master’s degree from the [University 
 
 Originally from Jixi, a quaint town in Huizhou region near [Mount Huangshan](https://whc.unesco.org/en/list/547/), I later moved to Shanghai, where I spent most of my formative years, all thanks to the unwavering support of my family.
 
-#### Research Interests:
+#### Research Interests
 
 My research spans a broad range of topics in mathematical statistics, with a focus on developing theoretical frameworks for **statistical inference on complex data**, including multilinear **tensors**, infinite-dimensional **functions**, and large-scale **genomics**. 
 
