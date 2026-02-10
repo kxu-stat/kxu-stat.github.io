@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-publications-amp-preprints",
           title: "Publications &amp; Preprints",
-          description: "🌱 Publications and Preprints awaiting publication by categories in reversed chronological order.",
+          description: "🌱 Publications and preprints (including manuscripts awaiting publication), listed in reverse chronological order.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
