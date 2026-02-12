@@ -34,7 +34,7 @@ Below is a list of courses I have taught, organized chronologically.
     <tr><td>ACMS 60786</td><td>Applied Linear Models</td><td>Fall 2023</td><td>Teaching Assistant</td></tr>
     <tr><td>ACMS 60888</td><td>Statistical Computing and Monte Carlo Methods</td><td>Fall 2023</td><td>Teaching Assistant</td></tr>
     <tr><td>ACMS 60801</td><td>Statistical Inference</td><td>Spring 2024; Spring 2026</td><td>Teaching Assistant</td></tr>
-    <tr><td>ACMS 30530</td><td>Introduction to Probability</td><td>Spring 2024; Fall 2024; Fall 2025</td><td>Teaching Assistant</td></tr>
+    <tr><td>ACMS 30530</td><td>Introduction to Probability</td><td>Spring 2024; Fall 2024; Fall 2025; Spring 2026</td><td>Teaching Assistant</td></tr>
     <tr><td>DS 60632</td><td>Behavioral Data Science</td><td>Fall 2024</td><td>Teaching Assistant</td></tr>
     <tr><td>DS 60645</td><td>Advanced Data Visualization</td><td>Fall 2024</td><td>Teaching Assistant</td></tr>
     <tr><td>ACMS 31600</td><td>Statistical Methods &amp; Data Analysis I (Lab Sections 1–2)</td><td>Spring 2025</td><td>Instructor</td></tr>
