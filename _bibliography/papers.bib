@@ -2,7 +2,7 @@
 ---
 @article{kang2026flexible,
   title={A flexible and unified framework for single-and multi-outcome Mendelian randomization using summary statistics},
-author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and Jinyu Wang and Guimin Gao and Shinya Tasaki and Brandon L. Pierce and David A. Bennett and Lin S. Chen},
+author = {Bowei Kang and David Li and {\bf Ke Xu} and Jianhai Chen and Sihao Feng and Jinyu Wang and Guimin Gao and Shinya Tasaki and Brandon L. Pierce and David A. Bennett and Lin S. Chen},
   journal={The American Journal of Human Genetics},
   year={2026},
   abstract = {Mendelian randomization (MR) is widely used to evaluate causal effects of complex trait exposures on disease outcomes. Recently, MR has been increasingly applied to molecular traits, such as gene expression, to map risk genes. However, transcriptome-wide MR (TWMR) faces unique challenges. The number of available cis-QTLs as instrumental variables (IVs) is often limited, and horizontal pleiotropy is pervasive, violating core MR assumptions and compromising inference validity. We introduce FusioMR, a robust MR framework tailored for molecular trait exposures while also applicable to complex trait exposures. Our single-outcome model, FusioMRs, incorporates gene-region-specific empirical priors informed by the number and strength of QTLs, linkage disequilibrium, and effect size consistency. It uses sampling-based inference to improve robustness when instruments are limited. Our multi-outcome model, FusioMRm, is motivated by the observation that many complex diseases have correlated diseases, subtypes, or comorbidities, which could be affected by shared or correlated exposures. FusioMRm jointly analyzes two correlated outcomes, leveraging shared IVs and pleiotropic effects of shared/correlated exposures to improve estimation precision and power, particularly for underpowered outcomes. We applied FusioMRs to identify cell-type-specific gene expression traits associated with Alzheimer disease using single-cell eQTL and GWAS summary data. We applied FusioMRm to detect alternative polyadenylation events affecting atrial fibrillation and ischemic stroke, and to estimate the causal effect of low-density lipoprotein on ischemic stroke in South Asian populations by borrowing information from European ancestry data. These applications highlight the generalizability of FusioMR for both molecular and complex trait exposures.},
@@ -14,11 +14,12 @@ author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and 
 
 @article{chen2025modewise,
   title={Modewise Additive Factor Model for Matrix Time Series},
-  author={Chen, Elynn and Han, Yuefeng and Li, Jiayu and Xu, Ke },
+  author={Chen, Elynn and Han, Yuefeng and Li, Jiayu and {\bf Ke Xu@}},
   journal={arXiv preprint arXiv:2512.25025},
   year={2025},
     abstract={We introduce a Modewise Additive Factor Model (MAFM) for matrix-valued time series that captures row-specific and column-specific latent effects through an additive structure, offering greater flexibility than multiplicative frameworks such as Tucker and CP factor models. In MAFM, each observation decomposes into a row-factor component, a column-factor component, and noise, allowing distinct sources of variation along different modes to be modeled separately. We develop a computationally efficient two-stage estimation procedure: Modewise Inner-product Eigendecomposition (MINE) for initialization, followed by Complement-Projected Alternating Subspace Estimation (COMPAS) for iterative refinement. The key methodological innovation is that orthogonal complement projections completely eliminate cross-modal interference when estimating each loading space. We establish convergence rates for the estimated factor loading matrices under proper conditions. We further derive asymptotic distributions for the loading matrix estimators and develop consistent covariance estimators, yielding a data-driven inference framework that enables confidence interval construction and hypothesis testing. As a technical contribution of independent interest, we establish matrix Bernstein inequalities for quadratic forms of dependent matrix time series. Numerical experiments on synthetic and real data demonstrate the advantages of the proposed method over existing approaches.},
   doi={10.48550/arXiv.2512.25025},
+  note = {Under major revision at \textit{Annals of Statistics}},
   abbr={Preprint},
   selected={true}
 }
@@ -35,7 +36,7 @@ author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and 
 
 @article{xu2025integrative,
   title={Integrative Mendelian randomization for detecting exposure-by-group interactions using group-specific and combined summary statistics},
-  author={Xu, Ke and Maydanchik, Nathaniel and Kang, Bowei and Chen, Jianhai and Chen, Qixiang and Xu, Gongyao and Tasaki, Shinya and Bennett, David A and Chen, Lin S},
+  author={{\bf Ke Xu} and Maydanchik, Nathaniel and Kang, Bowei and Chen, Jianhai and Chen, Qixiang and Xu, Gongyao and Tasaki, Shinya and Bennett, David A and Chen, Lin S},
   journal={PLoS genetics},
   volume={21},
   number={9},
@@ -50,7 +51,7 @@ author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and 
 
 @article{xu2025statistical,
   title={Statistical Inference for Low-Rank Tensor Models},
-  author={Xu, Ke and Chen, Elynn and Han, Yuefeng},
+  author={{\bf Ke Xu} and Chen, Elynn and Han, Yuefeng},
   journal={arXiv preprint arXiv:2501.16223},
   year={2025},
   abstract={Statistical inference for tensors has emerged as a critical challenge in analyzing high-dimensional data in modern data science. This paper introduces a unified framework for inferring general and low-Tucker-rank linear functionals of low-Tucker-rank signal tensors for several low-rank tensor models. Our methodology tackles two primary goals: achieving asymptotic normality and constructing minimax-optimal confidence intervals. By leveraging a debiasing strategy and projecting onto the tangent space of the low-Tucker-rank manifold, we enable inference for general and structured linear functionals, extending far beyond the scope of traditional entrywise inference. Specifically, in the low-Tucker-rank tensor regression or PCA model, we establish the computational and statistical efficiency of our approach, achieving near-optimal sample size requirements (in regression model) and signal-to-noise ratio (SNR) conditions (in PCA model) for general linear functionals without requiring sparsity in the loading tensor. Our framework also attains both computationally and statistically optimal sample size and SNR thresholds for low-Tucker-rank linear functionals. Numerical experiments validate our theoretical results, showcasing the framework's utility in diverse applications. This work addresses significant methodological gaps in statistical inference, advancing tensor analysis for complex and high-dimensional data environments.},
@@ -62,7 +63,7 @@ author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and 
 
 @article{lu2024integrative,
   title={An integrative multi-context Mendelian randomization method for identifying risk genes across human tissues},
-  author={Lu, Yihao and Xu, Ke and Maydanchik, Nathaniel and Kang, Bowei and Pierce, Brandon L and Yang, Fan and Chen, Lin S},
+  author={Lu, Yihao and {\bf Ke Xu} and Maydanchik, Nathaniel and Kang, Bowei and Pierce, Brandon L and Yang, Fan and Chen, Lin S},
   journal={The American Journal of Human Genetics},
   volume={111},
   number={8},
@@ -77,7 +78,7 @@ author = {Bowei Kang and David Li and Ke Xu and Jianhai Chen and Sihao Feng and 
 
 @article{xu2024infant,
   title={Infant age inversely correlates with gut carriage of resistance genes, reflecting modifications in microbial carbohydrate metabolism during early life},
-  author={Xu, Xinming and Feng, Qingying and Zhang, Tao and Gao, Yunlong and Cheng, Qu and Zhang, Wanqiu and Wu, Qinglong and Xu, Ke and Li, Yucan and Nguyen, Nhu and others},
+  author={Xu, Xinming and Feng, Qingying and Zhang, Tao and Gao, Yunlong and Cheng, Qu and Zhang, Wanqiu and Wu, Qinglong and {\bf Ke Xu} and Li, Yucan and Nguyen, Nhu and others},
   journal={Imeta},
   volume={3},
   number={2},

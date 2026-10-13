@@ -45,7 +45,7 @@ Below is a list of courses I have taught, organized chronologically.
 
 
 ### 🎈 Service
-- **Journal Reviewer:** PLoS Genetics  
+- **Journal Reviewer:** PLoS Genetics, Journal of Business & Economic Statistics, Journal of the American Statistical Association
 - **Professional Membership:** Institute of Mathematical Statistics; American Statistical Association
 
 
