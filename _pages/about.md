@@ -41,7 +41,3 @@ My research spans a broad range of topics in mathematical statistics, with a foc
 Methodologically, I am interested in the design and analysis of **iterative**, **randomized**, and **regularization**-based algorithms. 
 
 I am also passionate about statistical applications in the biomedical and physical sciences. I am always open to collabortion :) 
-
-<div class="visitor-globe">
-  <script type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=hRQxUrnMWzdfd4Sb8jK3C2HLYb9lm6rhC3UixIb7GvY"></script>
-</div>
