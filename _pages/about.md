@@ -36,8 +36,8 @@ Originally from Jixi, a quaint town in Huizhou region near [Mount Huangshan](htt
 
 #### Research Interests
 
-My research spans a broad range of topics in mathematical statistics, with a focus on developing theoretical frameworks for **statistical inference on structured complex data**, including multilinear **tensors**, infinite-dimensional **functions**, and large-scale **genomics**.
+My research spans a broad range of topics in mathematical statistics, with a focus on understanding when and how **reliable and efficient statistical inference** is possible in complex data settings. I am particularly interested in the role of structure in inference for **matrix- and tensor-valued data** and **functional data**. I study inference under **dependence arising from temporal dynamics or adaptive data collection**.
 
-Methodologically, I am interested in the design and analysis of **iterative**, **randomized**, and **regularization**-based algorithms.
+Methodologically, I am interested in **regularization**, **spectral methods**, and **nonconvex optimization**. I am particularly interested in the design and analysis of **iterative and randomized algorithms**, with an emphasis on **statistical accuracy and computational efficiency**.
 
-I am also passionate about statistical applications in the biomedical and physical sciences. I am always open to collabortion :)
+I am also passionate about statistical problems arising in **genomics and biomedicine**, the **physical sciences**, **econometrics**, and **business analytics**. I am always open to collaboration :)
