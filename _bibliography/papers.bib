@@ -20,6 +20,8 @@ author = {Bowei Kang and David Li and Xu, Ke and Jianhai Chen and Sihao Feng and
   year={2025},
     abstract={We introduce a Modewise Additive Factor Model (MAFM) for matrix-valued time series that captures row-specific and column-specific latent effects through an additive structure, offering greater flexibility than multiplicative frameworks such as Tucker and CP factor models. In MAFM, each observation decomposes into a row-factor component, a column-factor component, and noise, allowing distinct sources of variation along different modes to be modeled separately. We develop a computationally efficient two-stage estimation procedure: Modewise Inner-product Eigendecomposition (MINE) for initialization, followed by Complement-Projected Alternating Subspace Estimation (COMPAS) for iterative refinement. The key methodological innovation is that orthogonal complement projections completely eliminate cross-modal interference when estimating each loading space. We establish convergence rates for the estimated factor loading matrices under proper conditions. We further derive asymptotic distributions for the loading matrix estimators and develop consistent covariance estimators, yielding a data-driven inference framework that enables confidence interval construction and hypothesis testing. As a technical contribution of independent interest, we establish matrix Bernstein inequalities for quadratic forms of dependent matrix time series. Numerical experiments on synthetic and real data demonstrate the advantages of the proposed method over existing approaches.},
   doi={10.48550/arXiv.2512.25025},
+  arxiv={2512.25025},
+  pdf={https://arxiv.org/pdf/2512.25025},
   note = {Under major revision at \textit{Annals of Statistics}},
   abbr={Preprint},
   selected={true}
@@ -41,7 +43,7 @@ author = {Bowei Kang and David Li and Xu, Ke and Jianhai Chen and Sihao Feng and
 @article{xu2025integrative,
   title={Integrative Mendelian randomization for detecting exposure-by-group interactions using group-specific and combined summary statistics},
   author={Xu, Ke and Maydanchik, Nathaniel and Kang, Bowei and Chen, Jianhai and Chen, Qixiang and Xu, Gongyao and Tasaki, Shinya and Bennett, David A and Chen, Lin S},
-  journal={PLoS genetics},
+  journal={PLOS Genetics},
   volume={21},
   number={9},
   pages={e1011819},
@@ -50,7 +52,7 @@ author = {Bowei Kang and David Li and Xu, Ke and Jianhai Chen and Sihao Feng and
   abstract={Interactions between risk factors and covariate-defined groups are commonly observed in complex diseases. Existing methods for detecting interactions typically require individual-level data. The data availability and the measurements of risk exposures and covariates often limit the power and applicability in assessing interactions. To address these limitations, we propose int2MR, an integrative Mendelian randomization (MR) method that leverages GWAS summary statistics on exposure traits and group-separated and/or combined GWAS statistics on outcome traits. int2MR can assess a broad range of risk exposure effects on diseases and traits, revealing interactions unattainable with incomplete or limited individual-level data. Simulation studies demonstrated that int2MR effectively controls type I error rates under various settings while achieving considerable power gains with the integration of additional group-combined GWAS data. We applied int2MR to two data analyses. First, we identified risk exposures with sex-interaction effects on ADHD, and our results suggested potentially elevated inflammation in males. Second, we detected age-group-specific risk factors for Alzheimer’s disease pathologies in the oldest-old (age 95+), many of which were related to immune and inflammatory processes. Our findings suggest that reduced chronic inflammation may underlie the distinct pathological mechanisms observed in this age group. int2MR is a robust and flexible tool for assessing group-specific or interaction effects, providing insights into disease mechanisms.},
   doi={10.1371/journal.pgen.1011819},
   code={https://github.com/kxu-stat/int2MR},
-  abbr={PLoS Genetics},
+  abbr={PLOS Genetics},
   selected={true}
 }
 
@@ -61,6 +63,8 @@ author = {Bowei Kang and David Li and Xu, Ke and Jianhai Chen and Sihao Feng and
   year={2025},
   abstract={Statistical inference for tensors has emerged as a critical challenge in analyzing high-dimensional data in modern data science. This paper introduces a unified framework for inferring general and low-Tucker-rank linear functionals of low-Tucker-rank signal tensors for several low-rank tensor models. Our methodology tackles two primary goals: achieving asymptotic normality and constructing minimax-optimal confidence intervals. By leveraging a debiasing strategy and projecting onto the tangent space of the low-Tucker-rank manifold, we enable inference for general and structured linear functionals, extending far beyond the scope of traditional entrywise inference. Specifically, in the low-Tucker-rank tensor regression or PCA model, we establish the computational and statistical efficiency of our approach, achieving near-optimal sample size requirements (in regression model) and signal-to-noise ratio (SNR) conditions (in PCA model) for general linear functionals without requiring sparsity in the loading tensor. Our framework also attains both computationally and statistically optimal sample size and SNR thresholds for low-Tucker-rank linear functionals. Numerical experiments validate our theoretical results, showcasing the framework's utility in diverse applications. This work addresses significant methodological gaps in statistical inference, advancing tensor analysis for complex and high-dimensional data environments.},
   doi={10.48550/arXiv.2501.16223},
+  arxiv={2501.16223},
+  pdf={https://arxiv.org/pdf/2501.16223},
   abbr={Preprint},
   selected={true}
 }
@@ -76,7 +80,7 @@ author = {Bowei Kang and David Li and Xu, Ke and Jianhai Chen and Sihao Feng and
   year={2024},
   publisher={Elsevier},
   abstract={Mendelian randomization (MR) provides valuable assessments of the causal effect of exposure on outcome, yet the application of conventional MR methods for mapping risk genes encounters new challenges. One of the issues is the limited availability of expression quantitative trait loci (eQTLs) as instrumental variables (IVs), hampering the estimation of sparse causal effects. Additionally, the often context/tissue-specific eQTL effects challenge the MR assumption of consistent IV effects across eQTL and GWAS data. To address these challenges, we propose a multi-context multivariable integrative MR framework, mintMR, for mapping expression and molecular traits as joint exposures. It models the effects of molecular exposures across multiple tissues in each gene region, while simultaneously estimating across multiple gene regions. It uses eQTLs with consistent effects across more than one tissue type as IVs, improving IV consistency. A major innovation of mintMR involves employing multi-view learning methods to collectively model latent indicators of disease relevance across multiple tissues, molecular traits, and gene regions. The multi-view learning captures the major patterns of disease-relevance and uses these patterns to update the estimated tissue relevance probabilities. The proposed mintMR iterates between performing a multi-tissue MR for each gene region and joint learning the disease-relevant tissue probabilities across gene regions, improving the estimation of sparse effects across genes. We apply mintMR to evaluate the causal effects of gene expression and DNA methylation for 35 complex traits using multi-tissue QTLs as IVs. The proposed mintMR controls genome-wide inflation and offers new insights into disease mechanisms.},
-  doi={10.1101/2024.03.04.24303731},
+  doi={10.1016/j.ajhg.2024.06.012},
   abbr={AJHG},
   selected={true}
 }
