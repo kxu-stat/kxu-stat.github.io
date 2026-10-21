@@ -6,8 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Ke
 middle_name:
 last_name: Xu
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+contact_note:
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Ke Xu is a Ph.D. candidate at the University of Notre Dame working on statistical inference,
   low-rank models, sequential decision-making, and uncertainty quantification for structured,
@@ -69,9 +68,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: https://kxu-stat.github.io/assets/img/ke2025.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -186,6 +185,8 @@ kramdown:
 # Includes & excludes
 include: ["_pages", "_scripts"]
 exclude:
+  - assets/json/resume.json
+  - assets/rendercv/rendercv_output/Albert_Einstein_CV.pdf
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
@@ -201,7 +202,9 @@ exclude:
   - package.json
   - package-lock.json
   - _pages/about_einstein.md
+  - _pages/cv.md
   - _pages/dropdown.md
+  - _pages/profiles.md
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -346,7 +349,7 @@ filtered_bibtex_keywords:
   ]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
-max_author_limit: 3 # leave blank to always show all authors
+max_author_limit: 4 # leave blank to always show all authors
 more_authors_animation_delay: 10 # more authors are revealed on click using animation; smaller delay means faster animation
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
