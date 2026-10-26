@@ -23,6 +23,27 @@ hr {
   border-top: 1px solid var(--global-divider-color);
 }
 
+// Keep homepage prose and profile details consistent without changing publication styles.
+.about {
+  .about-content p,
+  .profile .more-info {
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .about-content strong {
+    font-weight: 500;
+  }
+
+  .profile .more-info {
+    font-family: inherit;
+
+    p {
+      display: block;
+    }
+  }
+}
+
 table {
   td,
   th {
