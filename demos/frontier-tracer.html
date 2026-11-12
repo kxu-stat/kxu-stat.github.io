@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Falsification Frontier Tracer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;1,400&family=Fira+Mono:wght@400;500&display=swap"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+      /* Layout: a beamer-like frame title band, one wide figure (three panels), then the controls and a one-line verdict. */
+      :root {
+        --bg: #f6f8f8;
+        --panel: #ffffff;
+        --fg: #1f2f33;
+        --muted: #5a6b6f;
+        --rule: #c8d3d5;
+        --band: #23373b;
+        --band-fg: #f3f7f7;
+        --teal: #11826b;
+        --teal-soft: rgba(17, 130, 107, 0.08);
+        --orange: #d47a1e;
+        --red: #c43d36;
+        --red-soft: rgba(196, 61, 54, 0.12);
+        --chip-ok-bg: #dff1ec;
+        --chip-bad-bg: #f8e1df;
+        --font-sans: "Fira Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "Fira Mono", ui-monospace, Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #111a1c;
+          --panel: #172326;
+          --fg: #e4eded;
+          --muted: #9db0b3;
+          --rule: #34474c;
+          --band: #0c1416;
+          --band-fg: #e4eded;
+          --teal: #3fc4a3;
+          --teal-soft: rgba(63, 196, 163, 0.1);
+          --orange: #f0a24f;
+          --red: #f07b72;
+          --red-soft: rgba(240, 123, 114, 0.16);
+          --chip-ok-bg: #173a33;
+          --chip-bad-bg: #42211f;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #111a1c;
+        --panel: #172326;
+        --fg: #e4eded;
+        --muted: #9db0b3;
+        --rule: #34474c;
+        --band: #0c1416;
+        --band-fg: #e4eded;
+        --teal: #3fc4a3;
+        --teal-soft: rgba(63, 196, 163, 0.1);
+        --orange: #f0a24f;
+        --red: #f07b72;
+        --red-soft: rgba(240, 123, 114, 0.16);
+        --chip-ok-bg: #173a33;
+        --chip-bad-bg: #42211f;
+        color-scheme: dark;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding-block: 20px 28px;
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .band {
+        background: var(--band);
+        color: var(--band-fg);
+        border-radius: 6px;
+        padding: 12px 18px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 6px 20px;
+      }
+      .band h1 {
+        margin: 0;
+        font-weight: 500;
+        font-size: clamp(20px, 2.6vw, 28px);
+        text-wrap: balance;
+      }
+      .band .ex {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        opacity: 0.85;
+      }
+      .legend {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        max-width: 80ch;
+      }
+      .legend .r {
+        color: var(--red);
+        font-weight: 500;
+      }
+      .legend .t {
+        color: var(--teal);
+        font-weight: 500;
+      }
+      .fig {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        padding: 8px 6px 2px;
+        overflow-x: auto;
+      }
+      .fig svg {
+        display: block;
+        width: 100%;
+        min-width: 560px;
+        height: auto;
+        font-family: var(--font-sans);
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 14px;
+      }
+      .slider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1 1 320px;
+        min-width: 0;
+      }
+      .slider label {
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .slider input {
+        flex: 1;
+        min-width: 0;
+        accent-color: var(--teal);
+        height: 28px;
+      }
+      .bval {
+        font-family: var(--font-mono);
+        font-size: 22px;
+        font-weight: 500;
+        min-width: 3.4em;
+        font-variant-numeric: tabular-nums;
+      }
+      .btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      button {
+        font: 500 15px var(--font-sans);
+        color: var(--fg);
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 7px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--muted);
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+      button .k {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: 6px;
+      }
+      .verdict {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 14px;
+        min-height: 3.2em;
+      }
+      .chip {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .chip.ok {
+        background: var(--chip-ok-bg);
+        color: var(--teal);
+      }
+      .chip.bad {
+        background: var(--chip-bad-bg);
+        color: var(--red);
+      }
+      .delta {
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .msg {
+        flex: 1 1 420px;
+        min-width: 0;
+        font-size: 16px;
+      }
+      .keys {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .halo {
+        paint-order: stroke;
+        stroke: var(--panel);
+        stroke-width: 5px;
+        stroke-linejoin: round;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="band">
+        <h1>Tracing the falsification frontier</h1>
+        <span class="ex">π = (0.10, 0.20), ψ = (0.02, 0.10), so β₁ = 0.20, β₂ = 0.50</span>
+      </header>
+
+      <p class="legend">
+        Rotate the line ψ = bπ. <span class="r">Red</span>: implied direct effects γ<sub>ℓ</sub>(b) = ψ<sub>ℓ</sub> − bπ<sub>ℓ</sub>. Right: δ(b) =
+        |γ(b)|. Bottom: values of b collected into the <span class="t">FAS</span>.
+      </p>
+
+      <div class="fig">
+        <svg id="fig" viewBox="0 0 1000 490" role="img" aria-labelledby="figTitle figDesc">
+          <title id="figTitle">Tracing the falsification frontier</title>
+          <desc id="figDesc">
+            Left: the two instruments as points with the line psi equals b pi and red vertical direct effects. Right: the delta plane with the
+            falsified region, the frontier, and the point delta of b. Bottom: the b axis with the values collected into the FAS.
+          </desc>
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </marker>
+          </defs>
+
+          <g fill="var(--muted)" font-size="15">
+            <line x1="80" y1="330" x2="452" y2="330" stroke="var(--muted)" stroke-width="1.2" />
+            <line x1="80" y1="330" x2="80" y2="30" stroke="var(--muted)" stroke-width="1.2" />
+            <text x="458" y="335" font-size="18" font-style="italic" fill="var(--fg)">
+              π
+              <tspan font-size="13" dy="4">ℓ</tspan>
+            </text>
+            <text x="88" y="28" font-size="18" font-style="italic" fill="var(--fg)">
+              ψ
+              <tspan font-size="13" dy="4">ℓ</tspan>
+            </text>
+            <line x1="224" y1="330" x2="224" y2="336" stroke="var(--muted)" />
+            <text x="224" y="354" text-anchor="middle">0.10</text>
+            <line x1="368" y1="330" x2="368" y2="336" stroke="var(--muted)" />
+            <text x="368" y="354" text-anchor="middle">0.20</text>
+            <line x1="74" y1="226.4" x2="80" y2="226.4" stroke="var(--muted)" />
+            <text x="70" y="231" text-anchor="end">0.05</text>
+            <line x1="74" y1="122.9" x2="80" y2="122.9" stroke="var(--muted)" />
+            <text x="70" y="127" text-anchor="end">0.10</text>
+          </g>
+          <line x1="80" y1="330" x2="440" y2="226.4" stroke="var(--teal)" stroke-width="1.6" stroke-dasharray="6 5" />
+          <line x1="80" y1="330" x2="440" y2="71.1" stroke="var(--orange)" stroke-width="1.6" stroke-dasharray="6 5" />
+          <text x="446" y="224" font-size="16" fill="var(--teal)">β₁ = 0.20</text>
+          <text x="446" y="72" font-size="16" fill="var(--orange)">β₂ = 0.50</text>
+          <line id="bline" x1="80" y1="330" x2="440" y2="226.4" stroke="var(--fg)" stroke-width="2.4" />
+          <line id="seg1" x1="224" y1="288.6" x2="224" y2="288.6" stroke="var(--red)" stroke-width="5" stroke-linecap="round" />
+          <line id="seg2" x1="368" y1="122.9" x2="368" y2="122.9" stroke="var(--red)" stroke-width="5" stroke-linecap="round" />
+          <text id="g1" class="halo" x="234" y="300" font-size="16" fill="var(--red)" font-style="italic">γ₁(b)</text>
+          <text id="g2" class="halo" x="378" y="160" font-size="16" fill="var(--red)" font-style="italic">γ₂(b)</text>
+          <circle cx="224" cy="288.6" r="7" fill="var(--fg)" />
+          <circle cx="368" cy="122.9" r="7" fill="var(--fg)" />
+          <text class="halo" x="206" y="280" font-size="18" text-anchor="end" fill="var(--fg)">Z₁</text>
+          <text class="halo" x="352" y="112" font-size="18" text-anchor="end" fill="var(--fg)">Z₂</text>
+
+          <polygon points="580,330 796,330 580,156" fill="var(--red-soft)" />
+          <polygon points="580,156 796,330 950,330 950,30 580,30" fill="var(--teal-soft)" />
+          <g fill="var(--muted)" font-size="15">
+            <line x1="580" y1="330" x2="952" y2="330" stroke="var(--muted)" stroke-width="1.2" />
+            <line x1="580" y1="330" x2="580" y2="30" stroke="var(--muted)" stroke-width="1.2" />
+            <text x="958" y="335" font-size="18" font-style="italic" fill="var(--fg)">δ₁</text>
+            <text x="588" y="28" font-size="18" font-style="italic" fill="var(--fg)">δ₂</text>
+            <line x1="796" y1="330" x2="796" y2="336" stroke="var(--muted)" />
+            <text x="796" y="354" text-anchor="middle">0.03</text>
+            <line x1="940" y1="330" x2="940" y2="336" stroke="var(--muted)" />
+            <text x="940" y="354" text-anchor="middle">0.05</text>
+            <line x1="574" y1="156" x2="580" y2="156" stroke="var(--muted)" />
+            <text x="570" y="161" text-anchor="end">0.06</text>
+            <line x1="574" y1="40" x2="580" y2="40" stroke="var(--muted)" />
+            <text x="570" y="45" text-anchor="end">0.10</text>
+            <text x="596" y="312" fill="var(--red)">falsified</text>
+            <text x="840" y="64" fill="var(--teal)">not falsified</text>
+          </g>
+          <polyline id="curve" points="" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 4" />
+          <line x1="580" y1="156" x2="796" y2="330" stroke="var(--teal)" stroke-width="4" />
+          <text x="706" y="214" font-size="18" font-weight="500" fill="var(--teal)">FF</text>
+          <line id="dom" x1="0" y1="0" x2="0" y2="0" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr)" opacity="0" />
+          <circle id="dpt" cx="580" cy="156" r="9" fill="var(--teal)" stroke="var(--panel)" stroke-width="2" />
+
+          <g fill="var(--muted)" font-size="15">
+            <line x1="80" y1="440" x2="945" y2="440" stroke="var(--muted)" stroke-width="1.2" />
+            <text x="952" y="446" font-size="18" font-style="italic" fill="var(--fg)">b</text>
+          </g>
+          <line id="fasbar" x1="325.7" y1="440" x2="327.7" y2="440" stroke="var(--teal)" stroke-width="12" />
+          <text id="faslabel" x="510" y="418" text-anchor="middle" font-size="17" font-weight="500" fill="var(--teal)" opacity="0">
+            FAS = [0.20, 0.50]
+          </text>
+          <g id="ticks" fill="var(--muted)" font-size="15"></g>
+          <circle id="bpt" cx="325.7" cy="440" r="9" fill="var(--teal)" stroke="var(--panel)" stroke-width="2" />
+        </svg>
+      </div>
+
+      <div class="controls">
+        <div class="slider">
+          <label for="bslider">Candidate b</label>
+          <input type="range" id="bslider" min="0" max="0.7" step="0.01" value="0.2" />
+          <span class="bval" id="bval">0.20</span>
+        </div>
+        <div class="btns">
+          <button id="p1" data-b="0.20">b = 0.20<span class="k">1</span></button>
+          <button id="p2" data-b="0.35">b = 0.35<span class="k">2</span></button>
+          <button id="p3" data-b="0.50">b = 0.50<span class="k">3</span></button>
+          <button id="p4" data-b="0.60">b = 0.60<span class="k">4</span></button>
+          <button id="p5" data-b="0.10">b = 0.10<span class="k">5</span></button>
+          <button id="sweep">Sweep<span class="k">space</span></button>
+          <button id="clear">Clear FAS<span class="k">C</span></button>
+        </div>
+      </div>
+
+      <div class="verdict" aria-live="polite">
+        <span id="chip" class="chip ok">On FF · b ∈ FAS</span>
+        <span id="dtext" class="delta">δ(b) = (0, 0.06)</span>
+        <span id="msg" class="msg"></span>
+      </div>
+      <p class="keys">
+        Keys: ← → move b by 0.01 (Shift: 0.05) · 1–4 the four clicks on the slide · 5 a value left of the interval · Space sweep · C clear the
+        collected values
+      </p>
+      <p class="keys">
+        Model and notation: Masten and Poirier (2021), “Salvaging Falsified Instrumental Variable Models,” Econometrica 89(3), Section 3.
+        Two-instrument example constructed for illustration.
+      </p>
+    </div>
+
+    <script>
+      (function () {
+        var PX = function (p) {
+          return 80 + 1440 * p;
+        };
+        var PY = function (s) {
+          return 330 - (290 / 0.14) * s;
+        };
+        var DX = function (a) {
+          return 580 + 7200 * a;
+        };
+        var DY = function (c) {
+          return 330 - 2900 * c;
+        };
+        var BX = function (b) {
+          return 80 + (860 / 0.7) * b;
+        };
+        var delta = function (b) {
+          return [Math.abs(0.02 - 0.1 * b), Math.abs(0.1 - 0.2 * b)];
+        };
+        var fmt = function (x) {
+          var r = Math.round(x * 1000) / 1000;
+          return r === 0 ? "0" : String(r);
+        };
+        var $ = function (id) {
+          return document.getElementById(id);
+        };
+
+        var pts = [];
+        for (var i = 0; i <= 70; i++) {
+          var d = delta(i / 100);
+          pts.push(DX(d[0]).toFixed(1) + "," + DY(d[1]).toFixed(1));
+        }
+        $("curve").setAttribute("points", pts.join(" "));
+
+        var ticks = [0, 0.1, 0.2, 0.35, 0.5, 0.6, 0.7],
+          g = $("ticks"),
+          ns = "http://www.w3.org/2000/svg";
+        ticks.forEach(function (t) {
+          var l = document.createElementNS(ns, "line");
+          l.setAttribute("x1", BX(t));
+          l.setAttribute("x2", BX(t));
+          l.setAttribute("y1", 434);
+          l.setAttribute("y2", 446);
+          l.setAttribute("stroke", "var(--muted)");
+          g.appendChild(l);
+          var tx = document.createElementNS(ns, "text");
+          tx.setAttribute("x", BX(t));
+          tx.setAttribute("y", 468);
+          tx.setAttribute("text-anchor", "middle");
+          tx.textContent = t === 0 ? "0" : t.toFixed(t === 0.35 ? 2 : 2);
+          g.appendChild(tx);
+        });
+
+        var lo = null,
+          hi = null,
+          cur = 0.2;
+
+        function drawBar() {
+          var bar = $("fasbar"),
+            lab = $("faslabel");
+          if (lo === null) {
+            bar.setAttribute("opacity", 0);
+            lab.setAttribute("opacity", 0);
+            return;
+          }
+          bar.setAttribute("opacity", 1);
+          bar.setAttribute("x1", BX(lo) - 1);
+          bar.setAttribute("x2", Math.max(BX(hi), BX(lo)) + 1);
+          lab.setAttribute("opacity", lo <= 0.2001 && hi >= 0.4999 ? 1 : 0);
+        }
+
+        function setB(b) {
+          b = Math.min(0.7, Math.max(0, Math.round(b * 100) / 100));
+          cur = b;
+          $("bslider").value = b;
+          $("bval").textContent = b.toFixed(2);
+
+          var pe = b > 0 ? Math.min(0.25, 0.14 / b) : 0.25;
+          $("bline").setAttribute("x2", PX(pe));
+          $("bline").setAttribute("y2", PY(b * pe));
+          var y1 = PY(0.1 * b),
+            y2 = PY(0.2 * b);
+          $("seg1").setAttribute("y2", y1);
+          $("seg2").setAttribute("y2", y2);
+          var g1 = $("g1"),
+            g2 = $("g2");
+          g1.setAttribute("y", ((288.6 + y1) / 2 + 6).toFixed(1));
+          g2.setAttribute("y", ((122.9 + y2) / 2 + 6).toFixed(1));
+          g1.setAttribute("opacity", Math.abs(288.6 - y1) > 14 ? 1 : 0);
+          g2.setAttribute("opacity", Math.abs(122.9 - y2) > 14 ? 1 : 0);
+
+          var d = delta(b),
+            inF = b >= 0.2 - 1e-9 && b <= 0.5 + 1e-9;
+          var col = inF ? "var(--teal)" : "var(--red)";
+          $("dpt").setAttribute("cx", DX(d[0]));
+          $("dpt").setAttribute("cy", DY(d[1]));
+          $("dpt").setAttribute("fill", col);
+          $("bpt").setAttribute("cx", BX(b));
+          $("bpt").setAttribute("fill", col);
+          $("dtext").textContent = "δ(b) = (" + fmt(d[0]) + ", " + fmt(d[1]) + ")";
+
+          var chip = $("chip"),
+            msg = $("msg"),
+            dom = $("dom");
+          if (inF) {
+            chip.className = "chip ok";
+            chip.textContent = "On FF · b ∈ FAS";
+            dom.setAttribute("opacity", 0);
+            if (lo === null) {
+              lo = b;
+              hi = b;
+            } else {
+              lo = Math.min(lo, b);
+              hi = Math.max(hi, b);
+            }
+            if (Math.abs(b - 0.2) < 1e-9)
+              msg.textContent = "The line passes through Z₁: exclusion holds for Z₁, and Z₂’s direct effect accounts for all of the falsification.";
+            else if (Math.abs(b - 0.5) < 1e-9)
+              msg.textContent = "The line passes through Z₂: exclusion holds for Z₂, and Z₁’s direct effect accounts for all of the falsification.";
+            else
+              msg.textContent =
+                "Both instruments violate exclusion. Rotating the line shortens one red segment and lengthens the other, so no b does better on both: δ(b) is minimal.";
+          } else {
+            var e = b < 0.2 ? 0.2 : 0.5,
+              de = delta(e);
+            chip.className = "chip bad";
+            chip.textContent = "Dominated · b ∉ FAS";
+            dom.setAttribute("opacity", 1);
+            var x1 = DX(d[0]),
+              y1d = DY(d[1]),
+              x2 = DX(de[0]),
+              y2d = DY(de[1]);
+            var len = Math.hypot(x2 - x1, y2d - y1d) || 1,
+              s = 13 / len;
+            dom.setAttribute("x1", x1 + (x2 - x1) * s);
+            dom.setAttribute("y1", y1d + (y2d - y1d) * s);
+            dom.setAttribute("x2", x2 - (x2 - x1) * s);
+            dom.setAttribute("y2", y2d - (y2d - y1d) * s);
+            msg.textContent =
+              "The line lies outside both rays. Rotating it back to b = " +
+              e.toFixed(2) +
+              " shortens both red segments: δ(b) is componentwise larger than δ(" +
+              e.toFixed(2) +
+              ") = (" +
+              fmt(de[0]) +
+              ", " +
+              fmt(de[1]) +
+              "), so it is not minimal.";
+          }
+          drawBar();
+        }
+
+        var timer = null;
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        function stopSweep() {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+            $("sweep").firstChild.nodeValue = "Sweep";
+          }
+        }
+        function startSweep() {
+          stopSweep();
+          lo = null;
+          hi = null;
+          var b = 0,
+            step = reduce ? 0.05 : 0.01,
+            ms = reduce ? 450 : 70;
+          setB(b);
+          $("sweep").firstChild.nodeValue = "Pause";
+          timer = setInterval(function () {
+            b = Math.round((b + step) * 100) / 100;
+            if (b > 0.7) {
+              stopSweep();
+              return;
+            }
+            setB(b);
+          }, ms);
+        }
+
+        $("bslider").addEventListener("input", function () {
+          stopSweep();
+          setB(parseFloat(this.value));
+        });
+        ["p1", "p2", "p3", "p4", "p5"].forEach(function (id) {
+          $(id).addEventListener("click", function () {
+            stopSweep();
+            setB(parseFloat(this.getAttribute("data-b")));
+          });
+        });
+        $("sweep").addEventListener("click", function () {
+          if (timer) stopSweep();
+          else startSweep();
+        });
+        $("clear").addEventListener("click", function () {
+          stopSweep();
+          lo = null;
+          hi = null;
+          setB(cur);
+        });
+
+        document.addEventListener("keydown", function (ev) {
+          var tag = (ev.target && ev.target.tagName) || "";
+          if (tag === "INPUT" && (ev.key === "ArrowLeft" || ev.key === "ArrowRight")) return;
+          var presets = { 1: 0.2, 2: 0.35, 3: 0.5, 4: 0.6, 5: 0.1 };
+          if (presets[ev.key] !== undefined) {
+            stopSweep();
+            setB(presets[ev.key]);
+            ev.preventDefault();
+          } else if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
+            stopSweep();
+            var s = ev.shiftKey ? 0.05 : 0.01;
+            setB(cur + (ev.key === "ArrowRight" ? s : -s));
+            ev.preventDefault();
+          } else if (ev.key === " ") {
+            if (tag !== "BUTTON") {
+              ev.preventDefault();
+              if (timer) stopSweep();
+              else startSweep();
+            }
+          } else if (ev.key === "c" || ev.key === "C") {
+            stopSweep();
+            lo = null;
+            hi = null;
+            setB(cur);
+          }
+        });
+
+        setB(0.2);
+      })();
+    </script>
+  </body>
+</html>
